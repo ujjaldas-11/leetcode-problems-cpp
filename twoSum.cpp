@@ -1,35 +1,32 @@
 #include <iostream>
 #include <vector>
+#include <unordered_map>
 
 using namespace std;
 
-vector<int> twoSum(int arr[], int size, int target) {
-     vector<int> ans;
-    
-        for(int i=0; i<4; i++) {
-            for(int j=i+1; j<4; j++) {
-                if((arr[i]+arr[j])==target) {
-                    ans.push_back(i);
-                    ans.push_back(j);
-                    // return ans;
-                    break;
+class solution {
+    public: 
+        vector<int> twoSum(vector<int>& nums, int target) {
+            unordered_map<int, int> map;
+
+            for(int i=0; i< nums.size(); i++ ) {
+                int complement = target - nums[i];
+                if(map.find(complement) != map.end()) {
+                    return {map[complement], i};
                 }
+                map[nums[i]] = i;
             }
+            return {};
         }
-        return ans;
-}
+};
 
 int main() {
-    int arr[5] = {2,3,7,9,5};
+     solution s1;
+    vector<int> arr = {2,3,7,9,5};
 
-    int target;
-    cout << "Enter sum value: ";
-    cin >> target;
-    int n = sizeof(arr)/sizeof(int);
-
-    vector<int> result = twoSum(arr, n, target);
+    vector<int> result = s1.twoSum(arr, 12);
     if (!result.empty()) {
-        cout << "Indices: " << result[0] << ", " << result[1];
+        cout << "Indices: " << result[0] << ", " << result[1] << endl;
     } else {
         cout << "No two sum solution found.";
     }

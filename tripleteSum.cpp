@@ -1,24 +1,43 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
+class solution {
+    public:
+        vector<int> twosum(vector<int>& nums, int target) {
+            sort(nums.begin(), nums.end());
+            int i = 0, j = nums.size()-1;
+            vector<int> ans;
+        while(i<j) {
+            int sum = nums[i] + nums[j];
+            if(sum == target) {
+                ans.push_back(i);
+                ans.push_back(j);
 
-int main() {
-    int target;
-    cout <<"Enter target: ";
-    cin >> target;
-    int arr[] = {1,2,3,4,5};
-    int n = sizeof(arr)/sizeof(arr[0]);
+                return ans;
+            }
+            if(sum > target) {
+                j--;
+            } 
 
-    for(int i=0; i<n; i++) {
-        for(int j=i+1; j<n; j++) {
-            for(int k=j+1; k<n; k++) {
-                if((arr[i]+arr[j]+arr[k])==target) {
-                    cout << i <<" "<< j << " " << k;
-                }
+            if(sum < target) {
+                i++;
             }
         }
+        return {};
     }
+        
+};
+
+int main() {
+    solution s1;
+    vector<int> nums ={2,3,4 };
+    int target = 6;
+
+   
+    cout << s1.twosum(nums, target) << endl;
     return 0;
 
 }
