@@ -30,7 +30,5 @@ int main() {
     
    cout <<  s1.containDuplicate(nums) << endl;
 
-
-
     return 0;
 }
